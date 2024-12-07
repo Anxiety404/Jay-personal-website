@@ -1,0 +1,12 @@
+What our website needs:
+
+Platform = ghost
+
+Domain = google Domain
+
+Blog page 
+
+About page
+
+Contact page
+
