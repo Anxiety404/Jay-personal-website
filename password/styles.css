@@ -1,0 +1,35 @@
+body {
+    background-color: #0d0d14;
+    color: #ac3232;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin-top: 0px;
+}
+img {
+    max-height: 300px;
+    border-radius: 20px;
+}
+
+input.form-control {
+    border: 2px solid #ac3232;
+    border-radius: 0; 
+    background-color: #0d0d14;
+    margin: 0 auto;
+    width: 40%;
+    height: 30px;
+    color: #ac3232;
+    outline: none;
+}
+
+label.form-label {
+    text-align: left;
+    margin-left: -150px;
+}
+
+input.form-control.password:focus {
+    background-color: #0d0d14;
+    border: 2px solid #ac3232; 
+    color: #ac3232;
+    outline: none;
+    box-shadow: none;
+}
