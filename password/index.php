@@ -45,7 +45,6 @@ if ($_SESSION['authenticated'] ?? false) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,12 +52,11 @@ if ($_SESSION['authenticated'] ?? false) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
-                <img src="<?php echo htmlspecialchars($randomImage); ?>" alt="Random Image" class="img-fluid mb-3">
+                <img id="image-container" src="<?php echo htmlspecialchars($randomImage); ?>" alt="Random Image" class="img-fluid mb-3">
 
                 <?php if ($showTimeoutMessage): ?>
                     <div class="alert alert-warning">Session timed out. Please log in again.</div>
@@ -89,9 +87,38 @@ if ($_SESSION['authenticated'] ?? false) {
                         <source src="<?php echo htmlspecialchars($randomSong); ?>" type="audio/mp3">
                     </audio>
                 <?php endif; ?>
+
+                <div id="clock-container" class="position-fixed top-0 end-0 p-3 rounded">
+                    <div id="time" class="fs-2 mb-0"></div>
+                    <div id="date" class="fs-6"></div>
+                </div>
             </div>
         </div>
     </div>
-</body>
 
+    <script>
+    function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString();
+        const date = now.toLocaleDateString('en-US', {
+            weekday: 'short', day: 'numeric', month: 'long', year: 'numeric'
+        });
+
+        document.getElementById('time').textContent = time;
+        document.getElementById('date').textContent = date;
+    }
+
+    updateClock();
+
+    setInterval(updateClock, 1000);
+
+    setInterval(function() {
+    const images = <?php echo json_encode($images); ?>;
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    document.getElementById('image-container').src = randomImage;
+}, 120000);
+
+    </script>
+
+</body>
 </html>
