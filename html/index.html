@@ -1,322 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Dw0kwkqm</title>
-    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"></script>
-    <script type="text/javascript" scr="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="darkreader-lock">
-	<style>
-		iframe{
-			border: 0;
-			overflow: hidden;
-			cursor: url("../cursors/curs.png"), auto;
-		}
-		img{
-			display: block;
-			max-width: inherit;
-		}
-		html{
-			cursor: url("../cursors/curs.png"), auto;
-			scrollbar-width: thin;
-			scrollbar-color: var(--mgray) var(--mblack);
-			min-height: 100%;
-		}
-		audio{
-			display: block;
-		}
-		:root{
-			--mblack: #0d0d14;
-			--mgray: #52263e;
-			--mwhite: #ac3232;
-		}
-		::selection{
-			color: #0d0d14;
-			background: #ac3232;
-		}
-		#text{
-			max-width: 36.5em;
-		}
-		p{
-			white-space-collapse: preserve;
-			margin-top: 0px;
-			margin-bottom: 0px;
-			word-break: break-all;
-		}
-		div{
-			margin-top: 0px;
-			margin-bottom: 0px;
-		}
-		body{
-			margin-top: 0px;
-			background-color: var(--mblack);
-			font-family: 'Courier New', Courier, monospace;
-			font-size: 20px;
-			color: var(--mwhite)
-		}
-		.input{
-			cursor: url("../cursors/curstext.png") 6 11, default;
-			font-size: inherit;
-			margin-top: 0px;
-			font-family: 'Courier New', Courier, monospace;
-			background-color: transparent;
-			outline: 0;
-			border: 0;
-			padding: 0;
-			resize: none;
-			width: 36em;
-			height:4em;
-			color: var(--mwhite);
-			overflow: hidden;
-			word-break: break-all;
-		}
-		.track-title{
-			justify-content: center;
-			display: flex;
-			margin-bottom: 4px;	
-		}
-		.track{
-			text-align: center;
-		}
-		.trackSvg{
-			height: 1.5ex;
-		}
-		.track-button{
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-			height: min-content;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			background: none;
-			border: none;
-		}
-		.player{
-			display: flex;
-			flex-direction: column;
-			width: 17%;
-			border: #ac3232;
-			position: fixed;
-			bottom: 20px;
-			right: 2%;
-			min-width: max-content;
-		}
-		.controls{
-			-webkit-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			margin-top: 5px;
-			display: flex;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-			align-items: center;
-		}
-		.slider{
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-			-webkit-appearance: none; 
-			appearance: none;
-			width: 100%;
-			height: 10px;
-			background: var(--mgray);
-			outline: none;
-		}
-		input[type=range]::-webkit-slider-thumb {
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-		}
-		.slider::-webkit-slider-thumb {
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-			outline: none;
-			border-radius: 0px;
-			-webkit-appearance: none;
-			appearance: none;
-			width: 10px;
-			height: 15px;
-			background: var(--mwhite);
-			border: 0;
-		}
-		.slider::-moz-range-thumb {
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-			border: 0;
-			outline: none;
-			border-radius: 0px;
-			width: 10px;
-			height: 15px;
-			background: var(--mwhite);
-		}
-		.slider::-moz-range-progress { 
-			height: 10px;
-			background: #ac3232;
-		}
-		#inpDiv{
-			display: flex;
-			flex-direction: center; 
-			visibility: hidden;
-		}
-		#clockncal{
-			cursor: url("../cursors/curspoint.png") 7 2, default;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			display: flex;
-			flex-direction: column;
-			position: fixed;
-			top: 10px;
-			right: 1%;
-			align-items: center;
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="darkreader-lock" />
+    <style>
+      iframe {
+        border: 0;
+        overflow: hidden;
+        cursor: url("../cursors/curs.png"), auto;
+      }
+      img {
+        display: block;
+        max-width: inherit;
+      }
+      html {
+        cursor: url("../cursors/curs.png"), auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--mgray) var(--mblack);
+        min-height: 100%;
+      }
+      audio {
+        display: block;
+      }
+      :root {
+        --mblack: #0d0d14;
+        --mgray: #52263e;
+        --mwhite: #ac3232;
+      }
+      ::selection {
+        color: #0d0d14;
+        background: #ac3232;
+      }
+      #text {
+        max-width: 36.5em;
+      }
+      p {
+        white-space-collapse: preserve;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        word-break: break-all;
+      }
+      div {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      body {
+        margin-top: 0px;
+        background-color: var(--mblack);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 20px;
+        color: var(--mwhite);
+      }
+      .input {
+        cursor: url("../cursors/curstext.png") 6 11, default;
+        font-size: inherit;
+        margin-top: 0px;
+        font-family: "Courier New", Courier, monospace;
+        background-color: transparent;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        resize: none;
+        width: 36em;
+        height: 4em;
+        color: var(--mwhite);
+        overflow: hidden;
+        word-break: break-all;
+      }
+      .track-title {
+        justify-content: center;
+        display: flex;
+        margin-bottom: 4px;
+      }
+      .track {
+        text-align: center;
+      }
+      .trackSvg {
+        height: 1.5ex;
+      }
+      .track-button {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+        height: min-content;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background: none;
+        border: none;
+      }
+      .player {
+        display: flex;
+        flex-direction: column;
+        width: 17%;
+        border: #ac3232;
+        position: fixed;
+        bottom: 20px;
+        right: 2%;
+        min-width: max-content;
+      }
+      .controls {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin-top: 5px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .slider {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 10px;
+        background: var(--mgray);
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+      }
+      .slider::-webkit-slider-thumb {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+        outline: none;
+        border-radius: 0px;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 15px;
+        background: var(--mwhite);
+        border: 0;
+      }
+      .slider::-moz-range-thumb {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+        border: 0;
+        outline: none;
+        border-radius: 0px;
+        width: 10px;
+        height: 15px;
+        background: var(--mwhite);
+      }
+      .slider::-moz-range-progress {
+        height: 10px;
+        background: #ac3232;
+      }
+      #inpDiv {
+        display: flex;
+        flex-direction: center;
+        visibility: hidden;
+      }
+      #clockncal {
+        cursor: url("../cursors/curspoint.png") 7 2, default;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 10px;
+        right: 1%;
+        align-items: center;
+      }
+      #clock {
+        font-size: 31px;
+      }
+      #date {
+        font-size: 17px;
+      }
+      @media only screen and (orientation: portrait) {
+        html {
+          padding: 0.1%;
+        }
+        #text {
+          max-width: 38em;
+        }
+        #clock {
+          font-size: 0px;
+        }
+        #date {
+          font-size: 0px;
+        }
+        body {
+          font-size: 57%;
+        }
+        .input {
+          font-size: 95%;
+        }
+        .player {
+          width: 95%;
+          font-size: 170%;
+        }
+      }
+      @media only screen and (orientation: landscape) and (max-width: 1000px) {
+        #text {
+          max-width: 38em;
+        }
+        body {
+          font-size: 80%;
+        }
+        .input {
+          font-size: 100%;
+        }
+        #clock {
+          font-size: 120%;
+        }
+        #date {
+          font-size: 100%;
+        }
+      }
+      #termimg {
+        margin: 7px 0px 7px 0px;
+        max-width: inherit;
+      }
+      .yna {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        color: #52263e;
+        z-index: -2;
+      }
+      .bgtext {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+      #bgcanvas {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+      .embed {
+        border: 1px solid #ac3232;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        background-color: #0d0d14;
+      }
+      .embedHead {
+        border: 1px solid #ac3232;
+        cursor: url("../cursors/cursmove.png") 12 12, default;
+        user-select: none;
+      }
+      .embedName {
+        text-overflow: ellipsis;
+        width: calc(100% - 40px);
+        overflow: hidden;
+        display: block;
+      }
+      .embedContent {
+        overflow: hidden;
+      }
+      .embedClose {
+        cursor: url("../cursors/curspoint.png") 12 12, default;
+      }
+      .vertResize {
+        cursor: url("../cursors/cursvert.png") 12 12, default;
+      }
+      .horResize {
+        cursor: url("../cursors/curshor.png") 12 12, default;
+      }
+      .rdiagResize {
+        cursor: url("../cursors/cursdiagr.png") 12 12, default;
+      }
+      .ldiagResize {
+        cursor: url("../cursors/cursdiagl.png") 12 12, default;
+      }
+      .resizeDiv {
+        position: absolute;
+        z-index: -1;
+      }
+    </style>
+  </head>
 
-		}
-		#clock{
-			font-size: 31px;
-		}
-		#date{
-			font-size: 17px;
-		}
-		@media only screen and (orientation:portrait) {
-			html{
-				padding: 0.1%;
-			}
-			#text{
-				max-width: 38em;
-			}
-			#clock{
-				font-size: 0px;
-			}
-			#date{
-				font-size: 0px;
-			}
-			body{
-				font-size:57%;
-			}
-			.input{
-				font-size: 95%;
-			}
-			.player{
-				width: 95%;
-				font-size: 170%;
-			}
-		}
-		@media only screen and (orientation:landscape) and (max-width: 1000px) {
-			#text{
-				max-width: 38em;
-			}
-			body{
-				font-size:80%;
-			}
-			.input{
-				font-size: 100%;
-			}
-			#clock{
-				font-size: 120%;
-			}
-			#date{
-				font-size: 100%;
-			}
-		}
-		#termimg{
-			margin: 7px 0px 7px 0px;
-			max-width: inherit;
-		}
-		.yna{
-			position: fixed;
-			width:100%;
-			height: 100%;
-			left:0;
-			top:0;
-			color:#52263e;
-			z-index: -2;
-		}
-		.bgtext{
-			position: fixed;
-			width:100%;
-			height: 100%;
-		}
-		#bgcanvas {
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			z-index: -1;
-		}
-		.embed{
-			border: 1px solid #ac3232;
-			display: flex;
-			flex-direction: column;
-			position: fixed;
-			background-color: #0d0d14;
-		}
-		.embedHead{
-			border: 1px solid #ac3232;
-			cursor: url('../cursors/cursmove.png') 12 12, default;
-			user-select: none;
-		}
-		.embedName{
-			text-overflow: ellipsis;
-			width: calc(100% - 40px);
-			overflow: hidden;
-			display: block;
-		}
-		.embedContent{
-			overflow: hidden;
-		}
-		.embedClose{
-			cursor: url('../cursors/curspoint.png') 12 12, default 
-		}
-		.vertResize{
-			cursor: url('../cursors/cursvert.png') 12 12, default 
-		}
-		.horResize{
-			cursor: url('../cursors/curshor.png') 12 12, default 
-		}
-		.rdiagResize{
-			cursor: url('../cursors/cursdiagr.png') 12 12, default 
-		}
-		.ldiagResize{
-			cursor: url('../cursors/cursdiagl.png') 12 12, default 
-		}
-		.resizeDiv {
-			position: absolute;
-			z-index: -1;
-		}
-	</style>
-</head>
-
-<body style="visibility: visible;">
-    <div id="term" style="opacity: 1;">
-    <div id="jayDiv" class="jayDiv">
+  <body style="visibility: visible">
+    <div id="term" style="opacity: 1">
+      <div id="jayDiv" class="jayDiv">
         <p>Write down your name.</p>
-        <input id="jay-input" class="input" type="text" placeholder="Here." style="height: 1em;" 
-		autocomplete="off" maxlength="9" onkeydown="jayEnter(this)" autofocus="">
-	</div>
-	<div id="clockncal" onclick="clickSwitch()">
-		<div id="clock"></div>
-		<div id="date"></div>
-	</div>
-	<div id="text"></div> 
-	<div id="inpDiv">
-		<textarea id="input" class="input" autocomplete="off" spellcheck="false" onkeydown="enter(this)" autofocus></textarea>
-	</div>
-	<div id="player" class="player">
-		<div class="track-title" id="track-title">-</div>
-		<input id="slider" class="slider" type="range" max="1" value="0" step="any">
-		<div id="controls" class="controls">
-			<small class="track" id="track-time">--:--</small>
-			<div class="track-button" id="prev" onclick="player('prev')"><img src="palyer/prev.svg" class="trackSvg"></div>
-			<div class="track-button" id="play" onclick="player('play')"><img src="palyer/pause.svg" class="trackSvg"></div>
-			<div class="track-button" id="next" onclick="player('next')"><img src="palyer/next.svg" class="trackSvg"></div>
-			<small class="track" id="track-length">--:--</small>
-		</div>
-	</div>
-	<div class="yna" id="bgtextcont"></div>
-</div>
-<canvas class="glslCanvas" id="bgcanvas" style="opacity: 0;"></canvas>
-<audio id="music"></audio>
-<audio id="clockSFX" src="clock.ogg"></audio>
+        <input
+          id="jay-input"
+          class="input"
+          type="text"
+          placeholder="Here."
+          style="height: 1em"
+          autocomplete="off"
+          maxlength="9"
+          onkeydown="jayEnter(this)"
+          autofocus=""
+        />
+      </div>
+      <div id="clockncal" onclick="clickSwitch()">
+        <div id="clock"></div>
+        <div id="date"></div>
+      </div>
+      <div id="text"></div>
+      <div id="inpDiv">
+        <textarea
+          id="input"
+          class="input"
+          autocomplete="off"
+          spellcheck="false"
+          onkeydown="enter(this)"
+          autofocus
+        ></textarea>
+      </div>
+      <div id="player" class="player">
+        <div class="track-title" id="track-title">Song Title</div>
+      
+        <input
+          id="slider"
+          class="slider"
+          type="range"
+          max="1"
+          value="0"
+          step="any"
+        />
+      
+        <div id="controls" class="controls">
+          <small class="track" id="track-time">--:--</small>
+          <div class="track-button" id="prev" onclick="player('prev')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223" />
+            </svg>
+          </div>
+          <div class="track-button" id="play" onclick="togglePlay()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+              <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5" />
+            </svg>
+          </div>
+          <div class="track-button" id="next" onclick="player('next')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
+            </svg>
+          </div>
+          <small class="track" id="track-length">--:--</small>
+        </div>
+        <audio id="music" autoplay>
+          <source id="audioSource" src="../assets/mp3/.mp3" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="yna" id="bgtextcont"></div>
+    </div>
+    <canvas class="glslCanvas" id="bgcanvas" style="opacity: 0"></canvas>
+
+    <audio id="clockSFX" src="clock.ogg"></audio>
+
+    <script>
+      // Clock update function
+      function updateClock() {
+        const now = new Date();
+        const time = now.toLocaleTimeString();
+        const date = now.toLocaleDateString("en-US", {
+          weekday: "short",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+
+        document.getElementById("clock").textContent = time;
+        document.getElementById("date").textContent = date;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      const musicPlayer = document.getElementById("music");
+      const playButton = document.getElementById("play");
 
 
-</body>
+      function togglePlay() {
+    if (musicPlayer.paused || musicPlayer.ended) {
+      if (!musicPlayer.src || musicPlayer.src === "undefined") {
+        console.error("Audio source is missing or invalid.");
+        return;
+      }
+      musicPlayer.play();
+      playButton.querySelector("svg").setAttribute("class", "bi bi-pause");
+    } else {
+      musicPlayer.pause();
+      playButton.querySelector("svg").setAttribute("class", "bi bi-play");
+    }
+  }
 
+  musicPlayer.addEventListener("error", () => {
+    console.error("Failed to load audio file.");
+  });
+
+  musicPlayer.addEventListener("timeupdate", () => {
+    const slider = document.getElementById("slider");
+    slider.value = musicPlayer.currentTime / musicPlayer.duration || 0;
+    document.getElementById("track-time").textContent = formatTime(
+      musicPlayer.currentTime
+    );
+    document.getElementById("track-length").textContent = formatTime(
+      musicPlayer.duration
+    );
+  });
+
+  function formatTime(seconds) {
+    if (!seconds) return "--:--";
+    let minutes = Math.floor(seconds / 60);
+    let remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
+  }
+
+      const nameInput = document.getElementById("jay-input");
+      const textContainer = document.getElementById("text");
+
+      function jayEnter(input) {
+        if (event.key === "Enter" && input.value.trim() !== "") {
+          const userName = input.value.trim();
+          input.parentElement.style.display = "none";
+          const asciiArt = `
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣶⣶⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣶⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠊⣿⣿⣟⡿⣿⣿⣿⣿⡿⡁⣿⣿⣿⠀⠀⠀⠀⣀⣤⡾⣦⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣀⣴⣾⠋⠉⣻⡷⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠃⢽⣿⣿⠿⢻⠏⠑⢀⣿⣿⣿⣀⣠⡶⠋⢹⣷⣄⢠⣿⣿⡶⣤⡀⠀⠀⠀
+⠀⠀⣀⣴⣾⢫⣿⡿⠀⣾⣿⠇⠀⣼⡟⠛⠛⣻⣿⣧⣀⣴⣶⣾⣿⣿⣷⣶⣄⣰⡟⣻⣿⡟⠉⣿⣷⡀⠘⣿⣿⠀⠙⢿⣇⢼⣿⣷⢦⣄
+⣴⡞⢹⣿⡿⣸⠟⠀⠀⣿⠏⠀⢸⣿⡟⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣿⣿⡇⠀⠻⣿⡇⠀⠈⢻⠀⠀⠀⠛⠌⠻⣿⡠⣿
+⣿⡏⡿⠏⠀⠁⠀⠀⠀⠃⠀⠀⠸⡿⠀⠀⢸⣿⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣙⣿⠁⠀⠀⠹⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠙
+⠋⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⢘⠃⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠸⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    `;
+          animateText(
+            `${asciiArt}
+            ============================================================
+######################-WELCOME ${userName}!-######################
+============================================================
+`
+          );
+        }
+      }
+
+      function animateText(text) {
+        textContainer.textContent = "";
+        let index = 0;
+
+        const interval = setInterval(() => {
+          if (index < text.length) {
+            textContainer.textContent += text[index] + "";
+            index++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 0);
+      }
+    </script>
+  </body>
 </html>
-
-

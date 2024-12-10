@@ -45,6 +45,7 @@ if ($_SESSION['authenticated'] ?? false) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,6 +53,7 @@ if ($_SESSION['authenticated'] ?? false) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -76,49 +78,52 @@ if ($_SESSION['authenticated'] ?? false) {
                     <div class="alert alert-success">You are logged in!</div>
                 <?php endif; ?>
 
-                <form method="POST" action="">
-                    <button type="submit" name="toggle_sound" class="emoji-btn">
-                        <?php echo ($_SESSION['sound_on'] ?? false) ? '🔊' : '🔇'; ?>
-                    </button>
-                </form>
-
-                <?php if ($_SESSION['sound_on'] ?? false && $randomSong): ?>
-                    <audio id="audioPlayer" controls autoplay>
-                        <source src="<?php echo htmlspecialchars($randomSong); ?>" type="audio/mp3">
-                    </audio>
-                <?php endif; ?>
-
-                <div id="clock-container" class="position-fixed top-0 end-0 p-3 rounded">
+                <!-- <div id="clock-container" class="position-fixed top-0 end-0 p-3 rounded">
                     <div id="time" class="fs-2 mb-0"></div>
                     <div id="date" class="fs-6"></div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 
+    <?php if ($_SESSION['sound_on'] ?? false && $randomSong): ?>
+        <audio id="audioPlayer" autoplay style="display:none;">
+            <source src="<?php echo htmlspecialchars($randomSong); ?>" type="audio/mp3">
+        </audio>
+    <?php endif; ?>
+
+    <form method="POST" action="" class="position-fixed bottom-0 end-0 p-3">
+        <button type="submit" name="toggle_sound" class="emoji-btn btn btn-light">
+            <?php echo ($_SESSION['sound_on'] ?? false) ? '🔊' : '🔇'; ?>
+        </button>
+    </form>
+
     <script>
-    function updateClock() {
-        const now = new Date();
-        const time = now.toLocaleTimeString();
-        const date = now.toLocaleDateString('en-US', {
-            weekday: 'short', day: 'numeric', month: 'long', year: 'numeric'
-        });
+        // function updateClock() {
+        //     const now = new Date();
+        //     const time = now.toLocaleTimeString();
+        //     const date = now.toLocaleDateString('en-US', {
+        //         weekday: 'short',
+        //         day: 'numeric',
+        //         month: 'long',
+        //         year: 'numeric'
+        //     });
 
-        document.getElementById('time').textContent = time;
-        document.getElementById('date').textContent = date;
-    }
+        //     document.getElementById('time').textContent = time;
+        //     document.getElementById('date').textContent = date;
+        // }
 
-    updateClock();
+        // updateClock();
 
-    setInterval(updateClock, 1000);
+        // setInterval(updateClock, 1000);
 
-    setInterval(function() {
-    const images = <?php echo json_encode($images); ?>;
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-    document.getElementById('image-container').src = randomImage;
-}, 120000);
-
+        setInterval(function() {
+            const images = <?php echo json_encode($images); ?>;
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            document.getElementById('image-container').src = randomImage;
+        }, 120000);
     </script>
 
 </body>
+
 </html>
