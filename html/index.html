@@ -301,6 +301,7 @@
       <div id="clockncal" onclick="clickSwitch()">
         <div id="clock"></div>
         <div id="date"></div>
+        <div><img src="../assets/images/__m16a1_and_m16a1_girls_frontline__sample-8a6f064e174e12a1c0cded0c52646979.jpg" alt="Home image"></div>
       </div>
       <div id="text"></div>
       <div id="inpDiv">
@@ -315,7 +316,7 @@
       </div>
       <div id="player" class="player">
         <div class="track-title" id="track-title">Song Title</div>
-      
+
         <input
           id="slider"
           class="slider"
@@ -324,28 +325,57 @@
           value="0"
           step="any"
         />
-      
+
         <div id="controls" class="controls">
           <small class="track" id="track-time">--:--</small>
           <div class="track-button" id="prev" onclick="player('prev')">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-compact-left"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"
+              />
             </svg>
           </div>
           <div class="track-button" id="play" onclick="togglePlay()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
-              <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-play"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"
+              />
             </svg>
           </div>
           <div class="track-button" id="next" onclick="player('next')">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-compact-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"
+              />
             </svg>
           </div>
           <small class="track" id="track-length">--:--</small>
         </div>
         <audio id="music" autoplay>
-          <source id="audioSource" src="../assets/mp3/.mp3" type="audio/mp3" />
+          <source id="audioSource" src="../assets/mp3/[Tsundere] Black Rock Shooter - 01 [BDRip h264 1920x1080 10bit FLAC][286C6D82].condensed.mp3" type="audio/mp3" />
           Your browser does not support the audio element.
         </audio>
       </div>
@@ -354,6 +384,7 @@
     <canvas class="glslCanvas" id="bgcanvas" style="opacity: 0"></canvas>
 
     <audio id="clockSFX" src="clock.ogg"></audio>
+
 
     <script>
       // Clock update function
@@ -377,42 +408,43 @@
       const musicPlayer = document.getElementById("music");
       const playButton = document.getElementById("play");
 
-
       function togglePlay() {
-    if (musicPlayer.paused || musicPlayer.ended) {
-      if (!musicPlayer.src || musicPlayer.src === "undefined") {
-        console.error("Audio source is missing or invalid.");
-        return;
+        if (musicPlayer.paused || musicPlayer.ended) {
+          if (!musicPlayer.src || musicPlayer.src === "undefined") {
+            console.error("Audio source is missing or invalid.");
+            return;
+          }
+          musicPlayer.play();
+          playButton.querySelector("svg").setAttribute("class", "bi bi-pause");
+        } else {
+          musicPlayer.pause();
+          playButton.querySelector("svg").setAttribute("class", "bi bi-play");
+        }
       }
-      musicPlayer.play();
-      playButton.querySelector("svg").setAttribute("class", "bi bi-pause");
-    } else {
-      musicPlayer.pause();
-      playButton.querySelector("svg").setAttribute("class", "bi bi-play");
-    }
-  }
 
-  musicPlayer.addEventListener("error", () => {
-    console.error("Failed to load audio file.");
-  });
+      musicPlayer.addEventListener("error", () => {
+        console.error("Failed to load audio file.");
+      });
 
-  musicPlayer.addEventListener("timeupdate", () => {
-    const slider = document.getElementById("slider");
-    slider.value = musicPlayer.currentTime / musicPlayer.duration || 0;
-    document.getElementById("track-time").textContent = formatTime(
-      musicPlayer.currentTime
-    );
-    document.getElementById("track-length").textContent = formatTime(
-      musicPlayer.duration
-    );
-  });
+      musicPlayer.addEventListener("timeupdate", () => {
+        const slider = document.getElementById("slider");
+        slider.value = musicPlayer.currentTime / musicPlayer.duration || 0;
+        document.getElementById("track-time").textContent = formatTime(
+          musicPlayer.currentTime
+        );
+        document.getElementById("track-length").textContent = formatTime(
+          musicPlayer.duration
+        );
+      });
 
-  function formatTime(seconds) {
-    if (!seconds) return "--:--";
-    let minutes = Math.floor(seconds / 60);
-    let remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
-  }
+      function formatTime(seconds) {
+        if (!seconds) return "--:--";
+        let minutes = Math.floor(seconds / 60);
+        let remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${
+          remainingSeconds < 10 ? "0" : ""
+        }${remainingSeconds}`;
+      }
 
       const nameInput = document.getElementById("jay-input");
       const textContainer = document.getElementById("text");
