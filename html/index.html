@@ -263,8 +263,16 @@
     </style>
   </head>
 
-  <body style="visibility: visible; margin-top: 0; background-color: var(--mblack); 
-  font-family: 'Courier New', Courier, monospace; font-size: 20px; color: var(--mwhite);">
+  <body
+    style="
+      visibility: visible;
+      margin-top: 0;
+      background-color: var(--mblack);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 20px;
+      color: var(--mwhite);
+    "
+  >
     <div id="term" style="opacity: 1">
       <div id="jayDiv" class="jayDiv">
         <p>Write down your name.</p>
@@ -280,16 +288,19 @@
           autofocus=""
         />
       </div>
-      <div id="clockncal" class="d-flex flex-column align-items-center position-fixed top-0 end-0 p-3" 
-      style="cursor: url('../cursors/curspoint.png') 7 2, default; user-select: none; top: 10px; right: 1%;" 
-      onclick="clickSwitch()">
+      <div
+        id="clockncal"
+        class="d-flex flex-column align-items-center position-fixed top-0 end-0 p-3"
+        style="
+          cursor: url('../cursors/curspoint.png') 7 2, default;
+          user-select: none;
+          top: 10px;
+          right: 1%;
+        "
+        onclick="clickSwitch()"
+      >
         <div id="clock"></div>
         <div id="date"></div>
-        <div class="mt-5 pt-5">
-          <img src="../assets/images/__m16a1_and_m16a1_girls_frontline__sample-8a6f064e174e12a1c0cded0c52646979.jpg" 
-               alt="Home image" 
-               class="img-fluid d-block mx-auto">
-        </div>
       </div>
       <div id="text"></div>
       <div id="inpDiv">
@@ -363,7 +374,11 @@
           <small class="track" id="track-length">--:--</small>
         </div>
         <audio id="music" autoplay>
-          <source id="audioSource" src="../assets/mp3/[Tsundere] Black Rock Shooter - 01 [BDRip h264 1920x1080 10bit FLAC][286C6D82].condensed.mp3" type="audio/mp3" />
+          <source
+            id="audioSource"
+            src="../assets/mp3/[Tsundere] Black Rock Shooter - 01 [BDRip h264 1920x1080 10bit FLAC][286C6D82].condensed.mp3"
+            type="audio/mp3"
+          />
           Your browser does not support the audio element.
         </audio>
       </div>
@@ -373,6 +388,21 @@
 
     <audio id="clockSFX" src="clock.ogg"></audio>
 
+    <div class="container text-center mt-5">
+      <div class="position-relative d-inline-block position-fixed bottom-0 start-0 p-3">
+        <button class="btn" id="mainButton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-yin-yang" viewBox="0 0 16 16">
+            <path d="M9.167 4.5a1.167 1.167 0 1 1-2.334 0 1.167 1.167 0 0 1 2.334 0"/>
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1 8a7 7 0 0 1 7-7 3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 0 0 7 7 7 0 0 1-7-7m7 4.667a1.167 1.167 0 1 1 0-2.334 1.167 1.167 0 0 1 0 2.334"/>
+          </svg>
+        </button>
+  
+        <div id="hiddenButtons" class="position-absolute bottom-100 start-50 translate-middle-x d-none flex-column">
+          <a href="/" class="btn btn-lg mb-2">About</a>
+          <a href="/html/index.html" class="btn btn-lg mb-2">Home</a>
+        </div>
+      </div>
+    </div>
 
     <script>
       // Clock update function
@@ -471,12 +501,23 @@
         const interval = setInterval(() => {
           if (index < text.length) {
             textContainer.textContent += text.slice(index, index + step);
-            index+=step;
+            index += step;
           } else {
             clearInterval(interval);
           }
         }, speed);
       }
+
+      const mainButton = document.getElementById('mainButton');
+    const hiddenButtons = document.getElementById('hiddenButtons');
+
+    mainButton.addEventListener('mouseover', () => {
+      hiddenButtons.classList.remove('d-none');
+
+    setTimeout(() => {
+        hiddenButtons.classList.add('d-none');
+      }, 3000);
+    });
     </script>
   </body>
 </html>
