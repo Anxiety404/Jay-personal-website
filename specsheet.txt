@@ -1,12 +1,10 @@
 What our website needs:
 
-Platform = ghost
+Platform = ghost (I'm broke)
 
-Domain = google Domain
-
-Blog page 
+Domain = google Domain (I'm broke)
 
 About page
 
-Contact page
+Home page
 
