@@ -287,6 +287,13 @@
           onkeydown="jayEnter(this)"
           autofocus=""
         />
+        <!-- <div class="position-absolute top-6 end-0 p-3">
+          <img
+            src="../assets/images/Episode_6-4.webp"
+            alt="Right Aligned Image"
+            class="img-fluid mb-3 col-md-6 text-center"
+          />
+        </div> -->
       </div>
       <div
         id="clockncal"
@@ -311,7 +318,7 @@
           spellcheck="false"
           onkeydown="enter(this)"
           autofocus
-        ></textarea>
+        ></textarea>\
       </div>
       <div id="player" class="player">
         <div class="track-title" id="track-title">Song Title</div>
@@ -330,8 +337,8 @@
           <div class="track-button" id="prev" onclick="player('prev')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="20"
+              height="20"
               fill="currentColor"
               class="bi bi-chevron-compact-left"
               viewBox="0 0 16 16"
@@ -375,9 +382,8 @@
         </div>
         <audio id="music" autoplay>
           <source
-            id="audioSource"
-            src="../assets/mp3/[Tsundere] Black Rock Shooter - 01 [BDRip h264 1920x1080 10bit FLAC][286C6D82].condensed.mp3"
-            type="audio/mp3"
+            id="music"
+            controls
           />
           Your browser does not support the audio element.
         </audio>
@@ -517,6 +523,22 @@
     setTimeout(() => {
         hiddenButtons.classList.add('d-none');
       }, 3000);
+    });
+
+    const mp3Directory = '../assets/mp3/';
+    const mp3Files = [
+      "[Tsundere] Black Rock Shooter - 01 [BDRip h264 1920x1080 10bit FLAC][286C6D82].condensed.mp3",
+      "[Tsundere] Black Rock Shooter - 02 [BDRip h264 1920x1080 10bit FLAC][5C815AAD].condensed.mp3",
+      "[Tsundere] Black Rock Shooter - 03 [BDRip h264 1920x1080 10bit FLAC][073A50D7].condensed.mp3"
+    ];
+
+    const audioElement = document.getElementById('music');
+
+    mp3Files.forEach(file => {
+      const source = document.createElement('source');
+      source.src = mp3Directory + file;
+      source.type = 'audio/mp3';
+      audioElement.appendChild(source);
     });
     </script>
   </body>
