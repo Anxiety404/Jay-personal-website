@@ -50,13 +50,6 @@
         margin-top: 0px;
         margin-bottom: 0px;
       }
-      body {
-        margin-top: 0px;
-        background-color: var(--mblack);
-        font-family: "Courier New", Courier, monospace;
-        font-size: 20px;
-        color: var(--mwhite);
-      }
       .input {
         cursor: url("../cursors/curstext.png") 6 11, default;
         font-size: inherit;
@@ -153,18 +146,6 @@
         display: flex;
         flex-direction: center;
         visibility: hidden;
-      }
-      #clockncal {
-        cursor: url("../cursors/curspoint.png") 7 2, default;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 10px;
-        right: 1%;
-        align-items: center;
       }
       #clock {
         font-size: 31px;
@@ -282,7 +263,8 @@
     </style>
   </head>
 
-  <body style="visibility: visible">
+  <body style="visibility: visible; margin-top: 0; background-color: var(--mblack); 
+  font-family: 'Courier New', Courier, monospace; font-size: 20px; color: var(--mwhite);">
     <div id="term" style="opacity: 1">
       <div id="jayDiv" class="jayDiv">
         <p>Write down your name.</p>
@@ -298,10 +280,16 @@
           autofocus=""
         />
       </div>
-      <div id="clockncal" onclick="clickSwitch()">
+      <div id="clockncal" class="d-flex flex-column align-items-center position-fixed top-0 end-0 p-3" 
+      style="cursor: url('../cursors/curspoint.png') 7 2, default; user-select: none; top: 10px; right: 1%;" 
+      onclick="clickSwitch()">
         <div id="clock"></div>
         <div id="date"></div>
-        <div><img src="../assets/images/__m16a1_and_m16a1_girls_frontline__sample-8a6f064e174e12a1c0cded0c52646979.jpg" alt="Home image"></div>
+        <div class="mt-5 pt-5">
+          <img src="../assets/images/__m16a1_and_m16a1_girls_frontline__sample-8a6f064e174e12a1c0cded0c52646979.jpg" 
+               alt="Home image" 
+               class="img-fluid d-block mx-auto">
+        </div>
       </div>
       <div id="text"></div>
       <div id="inpDiv">
@@ -476,18 +464,18 @@
         }
       }
 
-      function animateText(text) {
+      function animateText(text, step = 5, speed = 2) {
         textContainer.textContent = "";
         let index = 0;
 
         const interval = setInterval(() => {
           if (index < text.length) {
-            textContainer.textContent += text[index] + "";
-            index++;
+            textContainer.textContent += text.slice(index, index + step);
+            index+=step;
           } else {
             clearInterval(interval);
           }
-        }, 0);
+        }, speed);
       }
     </script>
   </body>
