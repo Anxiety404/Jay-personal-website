@@ -1,0 +1,250 @@
+iframe {
+    border: 0;
+    overflow: hidden;
+    cursor: url("../cursors/curs.png"), auto;
+  }
+  img {
+    display: block;
+    max-width: inherit;
+  }
+  html {
+    cursor: url("../cursors/curs.png"), auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--mgray) var(--mblack);
+    min-height: 100%;
+  }
+  audio {
+    display: block;
+  }
+  :root {
+    --mblack: #0d0d14;
+    --mgray: #52263e;
+    --mwhite: #ac3232;
+  }
+  ::selection {
+    color: #0d0d14;
+    background: #ac3232;
+  }
+  #text {
+    max-width: 36.5em;
+  }
+  p {
+    white-space-collapse: preserve;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    word-break: break-all;
+  }
+  div {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .input {
+    cursor: url("../cursors/curstext.png") 6 11, default;
+    font-size: inherit;
+    margin-top: 0px;
+    font-family: "Courier New", Courier, monospace;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    resize: none;
+    width: 36em;
+    height: 4em;
+    color: var(--mwhite);
+    overflow: hidden;
+    word-break: break-all;
+  }
+  .track-title {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 4px;
+  }
+  .track {
+    text-align: center;
+  }
+  .trackSvg {
+    height: 1.5ex;
+  }
+  .track-button {
+    cursor: url("../cursors/curspoint.png") 7 2, default;
+    height: min-content;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: none;
+    border: none;
+  }
+  .player {
+    display: flex;
+    flex-direction: column;
+    width: 17%;
+    border: #ac3232;
+    position: fixed;
+    bottom: 20px;
+    right: 2%;
+    min-width: max-content;
+  }
+  .controls {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .slider {
+    cursor: url("../cursors/curspoint.png") 7 2, default;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: var(--mgray);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    cursor: url("../cursors/curspoint.png") 7 2, default;
+  }
+  .slider::-webkit-slider-thumb {
+    cursor: url("../cursors/curspoint.png") 7 2, default;
+    outline: none;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 15px;
+    background: var(--mwhite);
+    border: 0;
+  }
+  .slider::-moz-range-thumb {
+    cursor: url("../cursors/curspoint.png") 7 2, default;
+    border: 0;
+    outline: none;
+    border-radius: 0px;
+    width: 10px;
+    height: 15px;
+    background: var(--mwhite);
+  }
+  .slider::-moz-range-progress {
+    height: 10px;
+    background: #ac3232;
+  }
+  #inpDiv {
+    display: flex;
+    flex-direction: center;
+    visibility: hidden;
+  }
+  #clock {
+    font-size: 31px;
+  }
+  #date {
+    font-size: 17px;
+  }
+  @media only screen and (orientation: portrait) {
+    html {
+      padding: 0.1%;
+    }
+    #text {
+      max-width: 38em;
+    }
+    #clock {
+      font-size: 0px;
+    }
+    #date {
+      font-size: 0px;
+    }
+    body {
+      font-size: 57%;
+    }
+    .input {
+      font-size: 95%;
+    }
+    .player {
+      width: 95%;
+      font-size: 170%;
+    }
+  }
+  @media only screen and (orientation: landscape) and (max-width: 1000px) {
+    #text {
+      max-width: 38em;
+    }
+    body {
+      font-size: 80%;
+    }
+    .input {
+      font-size: 100%;
+    }
+    #clock {
+      font-size: 120%;
+    }
+    #date {
+      font-size: 100%;
+    }
+  }
+  #termimg {
+    margin: 7px 0px 7px 0px;
+    max-width: inherit;
+  }
+  .yna {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    color: #52263e;
+    z-index: -2;
+  }
+  .bgtext {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  #bgcanvas {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+  .embed {
+    border: 1px solid #ac3232;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: #0d0d14;
+  }
+  .embedHead {
+    border: 1px solid #ac3232;
+    cursor: url("../cursors/cursmove.png") 12 12, default;
+    user-select: none;
+  }
+  .embedName {
+    text-overflow: ellipsis;
+    width: calc(100% - 40px);
+    overflow: hidden;
+    display: block;
+  }
+  .embedContent {
+    overflow: hidden;
+  }
+  .embedClose {
+    cursor: url("../cursors/curspoint.png") 12 12, default;
+  }
+  .vertResize {
+    cursor: url("../cursors/cursvert.png") 12 12, default;
+  }
+  .horResize {
+    cursor: url("../cursors/curshor.png") 12 12, default;
+  }
+  .rdiagResize {
+    cursor: url("../cursors/cursdiagr.png") 12 12, default;
+  }
+  .ldiagResize {
+    cursor: url("../cursors/cursdiagl.png") 12 12, default;
+  }
+  .resizeDiv {
+    position: absolute;
+    z-index: -1;
+  }
